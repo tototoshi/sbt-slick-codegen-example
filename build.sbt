@@ -35,7 +35,6 @@ lazy val web = (project in file("web"))
     slickCodegenDriver in Compile := scala.slick.driver.H2Driver,
     slickCodegenJdbcDriver in Compile := "org.h2.Driver",
     slickCodegenOutputPackage in Compile := "models",
-    slickCodegenCodeGenerator in Compile := { (model: m.Model) => new SourceCodeGenerator(model) },
     slickCodegenExcludedTables in Compile := Seq("schema_version"),
     slickCodegenCodeGenerator in Compile := { (model:  m.Model) => new SourceCodeGenerator(model) {
       override def code =
