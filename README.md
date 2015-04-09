@@ -1,4 +1,4 @@
-# play-slick-codegen-example
+# sbt-slick-codegen-example
 
 An example Play application to demonstrate the integration with sbt-slick-codegen and flyway.
 
