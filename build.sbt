@@ -29,26 +29,27 @@ lazy val web = (project in file("web"))
       "com.github.tototoshi" %% "slick-joda-mapper" % "1.2.0",
       "com.h2database" % "h2" % "1.4.186"
     ),
-    slickCodegenDatabaseUrl in Compile := databaseUrl,
-    slickCodegenDatabaseUser in Compile := databaseUser,
-    slickCodegenDatabasePassword in Compile := databasePassword,
-    slickCodegenDriver in Compile := scala.slick.driver.H2Driver,
-    slickCodegenJdbcDriver in Compile := "org.h2.Driver",
-    slickCodegenOutputPackage in Compile := "models",
-    slickCodegenExcludedTables in Compile := Seq("schema_version"),
-    slickCodegenCodeGenerator in Compile := { (model:  m.Model) => new SourceCodeGenerator(model) {
-      override def code =
-        "import com.github.tototoshi.slick.PostgresJodaSupport._\n" + "import org.joda.time.DateTime\n" + super.code
-      override def Table = new Table(_) {
-        override def Column = new Column(_) {
-          override def rawType = model.tpe match {
-            case "java.sql.Timestamp" => "DateTime" // kill j.s.Timestamp
-            case _ =>
-              super.rawType
+    slickCodegenDatabaseUrl := databaseUrl,
+    slickCodegenDatabaseUser := databaseUser,
+    slickCodegenDatabasePassword := databasePassword,
+    slickCodegenDriver := scala.slick.driver.H2Driver,
+    slickCodegenJdbcDriver := "org.h2.Driver",
+    slickCodegenOutputPackage := "models",
+    slickCodegenExcludedTables := Seq("schema_version"),
+    slickCodegenCodeGenerator := { (model:  m.Model) =>
+      new SourceCodeGenerator(model) {
+        override def code =
+          "import com.github.tototoshi.slick.PostgresJodaSupport._\n" + "import org.joda.time.DateTime\n" + super.code
+        override def Table = new Table(_) {
+          override def Column = new Column(_) {
+            override def rawType = model.tpe match {
+              case "java.sql.Timestamp" => "DateTime" // kill j.s.Timestamp
+              case _ =>
+                super.rawType
+            }
           }
         }
       }
-    }
-},
+    },
     sourceGenerators in Compile <+= slickCodegen
 )
