@@ -1,4 +1,3 @@
-import com.github.tototoshi.sbt.slick.CodegenPlugin._
 import scala.slick.codegen.SourceCodeGenerator
 import scala.slick.{ model => m }
 
@@ -20,6 +19,7 @@ lazy val flyway = (project in file("flyway"))
 
 lazy val web = (project in file("web"))
   .enablePlugins(PlayScala)
+  .settings(slickCodegenSettings:_*)
   .settings(
     scalaVersion := "2.11.6",
     libraryDependencies ++= Seq(
