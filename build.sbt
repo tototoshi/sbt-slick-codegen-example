@@ -39,7 +39,7 @@ lazy val web = (project in file("web"))
     slickCodegenCodeGenerator := { (model:  m.Model) =>
       new SourceCodeGenerator(model) {
         override def code =
-          "import com.github.tototoshi.slick.PostgresJodaSupport._\n" + "import org.joda.time.DateTime\n" + super.code
+          "import com.github.tototoshi.slick.H2JodaSupport._\n" + "import org.joda.time.DateTime\n" + super.code
         override def Table = new Table(_) {
           override def Column = new Column(_) {
             override def rawType = model.tpe match {
