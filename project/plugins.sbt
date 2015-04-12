@@ -24,7 +24,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.0.0")
 
 // settings for slick-codegen and sbt-flyway
 
-addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "0.1.0-SNAPSHOT")
+addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "1.0.0-SNAPSHOT")
 
 addSbtPlugin("org.flywaydb" % "flyway-sbt" % "3.2.1")
 
