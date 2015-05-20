@@ -1,0 +1,14 @@
+@(form: Form[UserForm])(implicit request: play.api.mvc.RequestHeader, messages: Messages)
+
+@implicitField = @{ views.html.helper.FieldConstructor(views.html.bootstrapField.f) }
+
+@main {
+    @parts.container {
+        @parts.well {
+            @helper.form(action = routes.Application.createPost) {
+                @helper.inputText(form("name"), 'class -> "form-control")
+                <input type="submit" value="Create" class="btn btn-primary">
+            }
+        }
+    }
+}

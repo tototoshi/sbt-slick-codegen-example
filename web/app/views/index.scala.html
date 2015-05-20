@@ -2,23 +2,28 @@
 
 @main {
     @parts.container {
-        @users.map { user =>
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>createdAt</th>
-                        <th></th>
-                    </tr>
+
+        <a href="@routes.Application.create" class="btn btn-primary">Create</a>
+
+        <div class="spacer"></div>
+
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>createdAt</th>
+                    <th></th>
+                </tr>
+                @users.map { user =>
                     <tr>
                         <td>@user.id</td>
                         <td>@user.name</td>
                         <td>@user.createdAt</td>
                         <td><a href="#" class="btn btn-primary">Edit</a></td>
                     </tr>
-                </tbody>
-            </table>
-        }
+                }
+            </tbody>
+        </table>
     }
 }
