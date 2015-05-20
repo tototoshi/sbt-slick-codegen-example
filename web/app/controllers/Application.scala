@@ -13,10 +13,10 @@ object Application extends Controller with HasDatabaseConfig[JdbcProfile] {
   val dbConfig = DatabaseConfigProvider.get[JdbcProfile](Play.current)
   import driver.api._
 
-  def index = Action.async {
+  def index = Action.async { implicit request =>
     val q = Tables.Users
     val usersF: Future[Seq[Tables.UsersRow]] = db.run(q.result)
-    usersF.map(user => Ok(user.toString))
+    usersF.map(user => Ok(views.html.index(user)))
   }
 
 }

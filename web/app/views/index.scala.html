@@ -1,0 +1,24 @@
+@(users: Seq[models.Tables.UsersRow])(implicit request: RequestHeader)
+
+@main {
+    @parts.container {
+        @users.map { user =>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>createdAt</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>@user.id</td>
+                        <td>@user.name</td>
+                        <td>@user.createdAt</td>
+                        <td><a href="#" class="btn btn-primary">Edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    }
+}
