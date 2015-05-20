@@ -1,10 +1,8 @@
-import scala.slick.codegen.SourceCodeGenerator
-import scala.slick.{ model => m }
+import slick.codegen.SourceCodeGenerator
+import slick.{ model => m }
 
 lazy val databaseUrl = sys.env.getOrElse("DB_DEFAULT_URL", "DB_DEFAULT_URL is not set")
-
 lazy val databaseUser = sys.env.getOrElse("DB_DEFAULT_USER", "DB_DEFAULT_USER is not set")
-
 lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT_PASSWORD is not set")
 
 lazy val flyway = (project in file("flyway"))
@@ -19,14 +17,17 @@ lazy val flyway = (project in file("flyway"))
 
 lazy val web = (project in file("web"))
   .enablePlugins(PlayScala)
-  .settings(slickCodegenSettings:_*)
+    .settings(slickCodegenSettings:_*)
+    .settings(scalariformSettings:_*)
   .settings(
     scalaVersion := "2.11.6",
     libraryDependencies ++= Seq(
       jdbc,
-      "com.typesafe.play" %% "play-slick" % "0.8.0",
-      "com.typesafe.slick" %% "slick" % "2.1.0",
-      "com.github.tototoshi" %% "slick-joda-mapper" % "1.2.0",
+      "com.typesafe.play" %% "play-slick" % "1.0.0-RC3",
+      "com.typesafe.slick" %% "slick" % "3.0.0",
+      "joda-time" % "joda-time" % "2.7",
+      "org.joda" % "joda-convert" % "1.7",
+      "com.github.tototoshi" %% "slick-joda-mapper" % "2.0.0",
       "com.h2database" % "h2" % "1.4.186"
     ),
     slickCodegenDatabaseUrl := databaseUrl,

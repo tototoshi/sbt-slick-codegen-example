@@ -3,16 +3,20 @@ package controllers
 import play.api._
 import play.api.mvc._
 import models.Tables
-import play.api.db.slick.Database
-import play.api.db.slick.Config.driver.simple._
-import play.api.Play.current
+import play.api.db.slick.{ HasDatabaseConfig, DatabaseConfigProvider }
+import slick.driver.JdbcProfile
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import scala.concurrent.Future
 
-object Application extends Controller {
+object Application extends Controller with HasDatabaseConfig[JdbcProfile] {
 
-  def index = Action {
-    Database("default").withSession { implicit session =>
-      Ok(Tables.Users.list.toString)
-    }
+  val dbConfig = DatabaseConfigProvider.get[JdbcProfile](Play.current)
+  import driver.api._
+
+  def index = Action.async {
+    val q = Tables.Users
+    val usersF: Future[Seq[Tables.UsersRow]] = db.run(q.result)
+    usersF.map(user => Ok(user.toString))
   }
 
 }
