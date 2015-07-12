@@ -5,7 +5,7 @@ resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repos
 resolvers += "Flyway" at "http://flywaydb.org/repo"
 
 // The Play plugin
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.0-RC5")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.2")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.3.0")
 
