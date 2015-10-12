@@ -8,7 +8,7 @@ lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT
 lazy val flyway = (project in file("flyway"))
   .settings(flywaySettings:_*)
   .settings(
-  scalaVersion := "2.11.6",
+  scalaVersion := "2.11.7",
   flywayUrl := databaseUrl,
   flywayUser := databaseUser,
   flywayPassword := databasePassword,
@@ -23,17 +23,17 @@ lazy val web = (project in file("web"))
     scalaVersion := "2.11.6",
     libraryDependencies ++= Seq(
       jdbc,
-      "com.typesafe.play" %% "play-slick" % "1.0.0-RC3",
-      "com.typesafe.slick" %% "slick" % "3.0.0",
+      "com.typesafe.play" %% "play-slick" % "1.1.0",
+      "com.typesafe.slick" %% "slick" % "3.1.0",
       "joda-time" % "joda-time" % "2.7",
       "org.joda" % "joda-convert" % "1.7",
-      "com.github.tototoshi" %% "slick-joda-mapper" % "2.0.0",
+      "com.github.tototoshi" %% "slick-joda-mapper" % "2.1.0",
       "com.h2database" % "h2" % "1.4.186"
     ),
     slickCodegenDatabaseUrl := databaseUrl,
     slickCodegenDatabaseUser := databaseUser,
     slickCodegenDatabasePassword := databasePassword,
-    slickCodegenDriver := scala.slick.driver.H2Driver,
+    slickCodegenDriver := slick.driver.H2Driver,
     slickCodegenJdbcDriver := "org.h2.Driver",
     slickCodegenOutputPackage := "models",
     slickCodegenExcludedTables := Seq("schema_version"),
@@ -52,5 +52,6 @@ lazy val web = (project in file("web"))
         }
       }
     },
-    sourceGenerators in Compile <+= slickCodegen
+    sourceGenerators in Compile <+= slickCodegen,
+    slickCodegenOutputDir := (sourceManaged in Compile).value / "a"
 )
