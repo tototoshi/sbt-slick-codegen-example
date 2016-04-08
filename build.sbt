@@ -6,7 +6,7 @@ lazy val databaseUser = sys.env.getOrElse("DB_DEFAULT_USER", "DB_DEFAULT_USER is
 lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT_PASSWORD is not set")
 
 lazy val flyway = (project in file("flyway"))
-  .settings(flywaySettings:_*)
+  .enablePlugins(FlywayPlugin)
   .settings(
   scalaVersion := "2.11.7",
   flywayUrl := databaseUrl,
