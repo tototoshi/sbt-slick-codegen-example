@@ -1,3 +1,4 @@
+import scalariform.formatter.preferences._
 import slick.codegen.SourceCodeGenerator
 import slick.{ model => m }
 
@@ -17,8 +18,7 @@ lazy val flyway = (project in file("flyway"))
 
 lazy val web = (project in file("web"))
   .enablePlugins(PlayScala)
-    .settings(slickCodegenSettings:_*)
-    .settings(scalariformSettings:_*)
+  .settings(slickCodegenSettings:_*)
   .settings(
     scalaVersion := "2.11.6",
     libraryDependencies ++= Seq(
@@ -30,6 +30,10 @@ lazy val web = (project in file("web"))
       "com.github.tototoshi" %% "slick-joda-mapper" % "2.1.0",
       "com.h2database" % "h2" % "1.4.186"
     ),
+    scalariformPreferences := scalariformPreferences.value
+      .setPreference(AlignSingleLineCaseStatements, true)
+      .setPreference(DoubleIndentConstructorArguments, true)
+      .setPreference(DanglingCloseParenthesis, Preserve),
     slickCodegenDatabaseUrl := databaseUrl,
     slickCodegenDatabaseUser := databaseUser,
     slickCodegenDatabasePassword := databasePassword,
