@@ -27,7 +27,7 @@ lazy val web = (project in file("web"))
       "com.typesafe.slick" %% "slick" % "3.1.0",
       "joda-time" % "joda-time" % "2.7",
       "org.joda" % "joda-convert" % "1.7",
-      "com.github.tototoshi" %% "slick-joda-mapper" % "2.1.0",
+      "com.github.tototoshi" %% "slick-joda-mapper" % "2.2.0",
       "com.h2database" % "h2" % "1.4.186"
     ),
     scalariformPreferences := scalariformPreferences.value
