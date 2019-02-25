@@ -22,8 +22,9 @@ lazy val web = (project in file("web"))
   .settings(
     scalaVersion := "2.11.6",
     libraryDependencies ++= Seq(
+      guice,
       jdbc,
-      "com.typesafe.play" %% "play-slick" % "2.1.1",
+      "com.typesafe.play" %% "play-slick" % "3.0.3",
       "com.typesafe.slick" %% "slick" % "3.2.0",
       "joda-time" % "joda-time" % "2.7",
       "org.joda" % "joda-convert" % "1.7",

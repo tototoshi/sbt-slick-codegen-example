@@ -4,21 +4,22 @@ import javax.inject.Inject
 import models.Tables
 import models.Tables.UsersRow
 import org.joda.time.DateTime
-import play.api.i18n.{ I18nSupport, MessagesApi }
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.db.slick.DatabaseConfigProvider
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.i18n.I18nSupport
 import play.api.mvc._
 import slick.jdbc.JdbcProfile
 
-import scala.concurrent.Future
+import scala.concurrent.{ ExecutionContext, Future }
 
 case class UserForm(name: String)
 
 class Application @Inject() (
-    val messagesApi: MessagesApi,
-    databaseConfigProvider: DatabaseConfigProvider) extends Controller with I18nSupport {
+    cc: ControllerComponents,
+    databaseConfigProvider: DatabaseConfigProvider)(implicit e: ExecutionContext)
+  extends AbstractController(cc)
+  with I18nSupport {
 
   private val dbConfig = databaseConfigProvider.get[JdbcProfile]
 
