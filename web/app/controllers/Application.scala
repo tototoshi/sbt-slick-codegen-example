@@ -1,29 +1,32 @@
 package controllers
 
+import javax.inject.Inject
+import models.Tables
 import models.Tables.UsersRow
 import org.joda.time.DateTime
-import play.api._
+import play.api.i18n.{ I18nSupport, MessagesApi }
 import play.api.data.Form
 import play.api.data.Forms._
-import play.api.mvc._
-import models.Tables
-import play.api.db.slick.{ HasDatabaseConfig, DatabaseConfigProvider }
-import slick.driver.JdbcProfile
+import play.api.db.slick.DatabaseConfigProvider
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.mvc._
+import slick.driver.JdbcProfile
+
 import scala.concurrent.Future
-import play.api.Play.current
-import play.api.i18n.Messages.Implicits._
 
 case class UserForm(name: String)
 
-object Application extends Controller with HasDatabaseConfig[JdbcProfile] {
+class Application @Inject() (
+    val messagesApi: MessagesApi,
+    databaseConfigProvider: DatabaseConfigProvider) extends Controller with I18nSupport {
 
-  val dbConfig = DatabaseConfigProvider.get[JdbcProfile](Play.current)
-  import driver.api._
+  private val dbConfig = databaseConfigProvider.get[JdbcProfile]
+
+  import dbConfig.driver.api._
 
   def index = Action.async { implicit request =>
     val q = Tables.Users
-    val usersF: Future[Seq[Tables.UsersRow]] = db.run(q.result)
+    val usersF: Future[Seq[Tables.UsersRow]] = dbConfig.db.run(q.result)
     usersF.map(user => Ok(views.html.index(user)))
   }
 
@@ -44,7 +47,7 @@ object Application extends Controller with HasDatabaseConfig[JdbcProfile] {
 
     def handleSuccess(form: UserForm): Result = {
       val q = Tables.Users += UsersRow(0, form.name, DateTime.now)
-      db.run(q)
+      dbConfig.db.run(q)
       Redirect(routes.Application.index)
     }
 

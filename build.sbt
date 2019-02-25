@@ -23,7 +23,7 @@ lazy val web = (project in file("web"))
     scalaVersion := "2.11.6",
     libraryDependencies ++= Seq(
       jdbc,
-      "com.typesafe.play" %% "play-slick" % "1.1.0",
+      "com.typesafe.play" %% "play-slick" % "2.0.2",
       "com.typesafe.slick" %% "slick" % "3.1.0",
       "joda-time" % "joda-time" % "2.7",
       "org.joda" % "joda-convert" % "1.7",
