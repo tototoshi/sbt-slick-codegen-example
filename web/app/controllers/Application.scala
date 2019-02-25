@@ -10,7 +10,7 @@ import play.api.data.Forms._
 import play.api.db.slick.DatabaseConfigProvider
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc._
-import slick.driver.JdbcProfile
+import slick.jdbc.JdbcProfile
 
 import scala.concurrent.Future
 
@@ -22,7 +22,7 @@ class Application @Inject() (
 
   private val dbConfig = databaseConfigProvider.get[JdbcProfile]
 
-  import dbConfig.driver.api._
+  import dbConfig.profile.api._
 
   def index = Action.async { implicit request =>
     val q = Tables.Users

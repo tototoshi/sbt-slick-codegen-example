@@ -23,11 +23,11 @@ lazy val web = (project in file("web"))
     scalaVersion := "2.11.6",
     libraryDependencies ++= Seq(
       jdbc,
-      "com.typesafe.play" %% "play-slick" % "2.0.2",
-      "com.typesafe.slick" %% "slick" % "3.1.0",
+      "com.typesafe.play" %% "play-slick" % "2.1.1",
+      "com.typesafe.slick" %% "slick" % "3.2.0",
       "joda-time" % "joda-time" % "2.7",
       "org.joda" % "joda-convert" % "1.7",
-      "com.github.tototoshi" %% "slick-joda-mapper" % "2.2.0",
+      "com.github.tototoshi" %% "slick-joda-mapper" % "2.3.0",
       "com.h2database" % "h2" % "1.4.186"
     ),
     scalariformPreferences := scalariformPreferences.value

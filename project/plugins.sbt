@@ -9,7 +9,7 @@ addSbtPlugin("org.scalariform" % "sbt-scalariform" % "1.8.2")
 
 // settings for slick-codegen and sbt-flyway
 
-addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "1.2.0")
+addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "1.3.0")
 
 resolvers += "Flyway" at "https://flywaydb.org/repo"
 
