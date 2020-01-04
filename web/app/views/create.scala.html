@@ -9,7 +9,7 @@
         @parts.well {
             @helper.form(action = routes.Application.createPost) {
                 @CSRF.formField
-                @helper.inputText(form("name"), 'class -> "form-control")
+                @helper.inputText(form("name"), Symbol("class") -> "form-control")
                 <input type="submit" value="Create" class="btn btn-primary">
             }
         }

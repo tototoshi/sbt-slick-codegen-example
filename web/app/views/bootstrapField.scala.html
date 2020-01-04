@@ -4,11 +4,11 @@
 @import views.html.helper._
 
 @errorClass(elements: FieldElements) = {
-@elements.args.get('_class) @if(elements.hasErrors) {has-error}
+@elements.args.get(Symbol("_class")) @if(elements.hasErrors) {has-error}
 }
 
 <div class="form-group @errorClass(elements)"
-id="@elements.args.get('_id).getOrElse(elements.id + "_field")">
+id="@elements.args.get(Symbol("_id")).getOrElse(elements.id + "_field")">
 
     <label class="col-sm-2 col-lg-2 col-md-2 col-xs-2 control-label" for="@elements.id">
     @elements.label

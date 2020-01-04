@@ -3,7 +3,7 @@ resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releas
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 // The Play plugin
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.7.0")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.8.0")
 
 addSbtPlugin("org.scalariform" % "sbt-scalariform" % "1.8.2")
 
@@ -11,8 +11,6 @@ addSbtPlugin("org.scalariform" % "sbt-scalariform" % "1.8.2")
 
 addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "1.4.0")
 
-resolvers += "Flyway" at "https://flywaydb.org/repo"
+ addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "6.0.7")
 
-addSbtPlugin("org.flywaydb" % "flyway-sbt" % "4.0")
-
-libraryDependencies += "com.h2database" % "h2" % "1.4.186"
+libraryDependencies += "com.h2database" % "h2" % "1.4.199"
