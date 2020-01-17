@@ -9,7 +9,7 @@ lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT
 lazy val flyway = (project in file("flyway"))
   .enablePlugins(FlywayPlugin)
   .settings(
-  scalaVersion := "2.11.7",
+  scalaVersion := "2.13.1",
   flywayUrl := databaseUrl,
   flywayUser := databaseUser,
   flywayPassword := databasePassword,
@@ -17,19 +17,18 @@ lazy val flyway = (project in file("flyway"))
 )
 
 lazy val web = (project in file("web"))
-  .enablePlugins(PlayScala)
-  .settings(slickCodegenSettings:_*)
+  .enablePlugins(PlayScala, CodegenPlugin)
   .settings(
-    scalaVersion := "2.11.6",
+    scalaVersion := "2.13.1",
     libraryDependencies ++= Seq(
       guice,
       jdbc,
-      "com.typesafe.play" %% "play-slick" % "4.0.0",
-      "com.typesafe.slick" %% "slick" % "3.3.0",
+      "com.typesafe.play" %% "play-slick" % "5.0.0",
+      "com.typesafe.slick" %% "slick" % "3.3.2",
       "joda-time" % "joda-time" % "2.7",
       "org.joda" % "joda-convert" % "1.7",
-      "com.github.tototoshi" %% "slick-joda-mapper" % "2.4.0",
-      "com.h2database" % "h2" % "1.4.186"
+      "com.github.tototoshi" %% "slick-joda-mapper" % "2.4.2",
+      "com.h2database" % "h2" % "1.4.199"
     ),
     scalariformPreferences := scalariformPreferences.value
       .setPreference(AlignSingleLineCaseStatements, true)
@@ -38,7 +37,7 @@ lazy val web = (project in file("web"))
     slickCodegenDatabaseUrl := databaseUrl,
     slickCodegenDatabaseUser := databaseUser,
     slickCodegenDatabasePassword := databasePassword,
-    slickCodegenDriver := slick.driver.H2Driver,
+    slickCodegenDriver := slick.jdbc.H2Profile,
     slickCodegenJdbcDriver := "org.h2.Driver",
     slickCodegenOutputPackage := "models",
     slickCodegenExcludedTables := Seq("schema_version"),
@@ -57,6 +56,6 @@ lazy val web = (project in file("web"))
         }
       }
     },
-    sourceGenerators in Compile <+= slickCodegen,
+    sourceGenerators in Compile += slickCodegen.taskValue,
     slickCodegenOutputDir := (sourceManaged in Compile).value / "a"
 )
