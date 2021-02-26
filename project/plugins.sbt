@@ -11,6 +11,6 @@ addSbtPlugin("org.scalariform" % "sbt-scalariform" % "1.8.2")
 
 addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "1.4.0")
 
- addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "6.0.7")
+ addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "6.5.0")
 
 libraryDependencies += "com.h2database" % "h2" % "1.4.199"
