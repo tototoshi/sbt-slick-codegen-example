@@ -13,4 +13,4 @@ addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "1.4.0")
 
  addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "6.0.7")
 
-libraryDependencies += "com.h2database" % "h2" % "1.4.199"
+libraryDependencies += "com.h2database" % "h2" % "1.4.200"
