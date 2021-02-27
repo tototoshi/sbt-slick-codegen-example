@@ -11,5 +11,5 @@ migrate:
 run: migrate
 	$(SBT) web/run
 
-test:
+test: migrate
 	$(SBT) -v test
