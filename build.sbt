@@ -27,7 +27,7 @@ lazy val web = (project in file("web"))
       "com.typesafe.slick" %% "slick" % "3.3.3",
       "joda-time" % "joda-time" % "2.10.10",
       "org.joda" % "joda-convert" % "1.9.2",
-      "com.github.tototoshi" %% "slick-joda-mapper" % "2.4.2",
+      "com.github.tototoshi" %% "slick-joda-mapper" % "2.5.0",
       "com.h2database" % "h2" % "1.4.200",
       "org.scalatest" %% "scalatest" % "3.2.5" % Test
     ),
@@ -45,7 +45,7 @@ lazy val web = (project in file("web"))
     slickCodegenCodeGenerator := { (model:  m.Model) =>
       new SourceCodeGenerator(model) {
         override def code =
-          "import com.github.tototoshi.slick.H2JodaSupport._\n" + "import org.joda.time.DateTime\n" + super.code
+          "import com.github.tototoshi.slick.H2JodaSupport.{getDatetimeResult => _, _}\n" + "import org.joda.time.DateTime\n" + super.code
         override def Table = new Table(_) {
           override def Column = new Column(_) {
             override def rawType = model.tpe match {
