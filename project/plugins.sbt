@@ -14,3 +14,6 @@ addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "1.4.0")
  addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "7.4.0")
 
 libraryDependencies += "com.h2database" % "h2" % "1.4.200"
+
+// https://github.com/sbt/sbt/issues/6400
+addSbtPlugin("com.typesafe.sbt" % "sbt-twirl" % "1.5.1")
