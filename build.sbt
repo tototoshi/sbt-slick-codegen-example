@@ -57,6 +57,6 @@ lazy val web = (project in file("web"))
         }
       }
     },
-    sourceGenerators in Compile += slickCodegen.taskValue,
-    slickCodegenOutputDir := (sourceManaged in Compile).value / "a"
+    Compile / sourceGenerators += slickCodegen.taskValue,
+    slickCodegenOutputDir := (Compile / sourceManaged).value / "a"
 )
