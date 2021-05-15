@@ -29,7 +29,7 @@ lazy val web = (project in file("web"))
       "org.joda" % "joda-convert" % "2.2.1",
       "com.github.tototoshi" %% "slick-joda-mapper" % "2.5.0",
       "com.h2database" % "h2" % "1.4.200",
-      "org.scalatest" %% "scalatest" % "3.2.8" % Test
+      "org.scalatest" %% "scalatest" % "3.2.9" % Test
     ),
     scalariformPreferences := scalariformPreferences.value
       .setPreference(AlignSingleLineCaseStatements, true)
