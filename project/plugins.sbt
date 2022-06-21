@@ -10,5 +10,5 @@ addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "7.4.0")
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "2.1.214",
-  "org.flywaydb" % "flyway-core" % "8.5.11"
+  "org.flywaydb" % "flyway-core" % "8.5.13"
 )
