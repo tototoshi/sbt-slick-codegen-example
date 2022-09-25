@@ -6,13 +6,12 @@ lazy val databaseUser = sys.env.getOrElse("DB_DEFAULT_USER", "DB_DEFAULT_USER is
 lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT_PASSWORD is not set")
 
 lazy val flyway = (project in file("flyway"))
-  .enablePlugins(FlywayPlugin)
   .settings(
     scalaVersion := "2.13.9",
-    flywayUrl := databaseUrl,
-    flywayUser := databaseUser,
-    flywayPassword := databasePassword,
-    flywayLocations := Seq("filesystem:web/conf/db/migration/default")
+    libraryDependencies ++= Seq(
+      "org.flywaydb" % "flyway-core" % "9.3.1",
+      "com.h2database" % "h2" % "2.1.214"
+    )
   )
 
 lazy val web = (project in file("web"))

@@ -6,7 +6,7 @@ SBT := DB_DEFAULT_URL=$(DB_DEFAULT_URL) DB_DEFAULT_USER=$(DB_DEFAULT_USER) DB_DE
 .PHONY: migrate run test
 
 migrate:
-	$(SBT) flyway/flywayMigrate # flyway configuration is in another subproject to avoid conflict between migration and compilation
+	$(SBT) flyway/run # flyway configuration is in another subproject to avoid conflict between migration and compilation
 
 run: migrate
 	JAVA_OPTS="--add-opens=java.base/java.lang=ALL-UNNAMED" $(SBT) web/run
