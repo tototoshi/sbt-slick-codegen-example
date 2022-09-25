@@ -9,7 +9,7 @@ migrate:
 	$(SBT) flyway/flywayMigrate # flyway configuration is in another subproject to avoid conflict between migration and compilation
 
 run: migrate
-	$(SBT) web/run
+	JAVA_OPTS="--add-opens=java.base/java.lang=ALL-UNNAMED" $(SBT) web/run
 
 test: migrate
 	$(SBT) -v test
