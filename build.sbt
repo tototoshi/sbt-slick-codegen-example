@@ -24,7 +24,7 @@ lazy val web = (project in file("web"))
       jdbc,
       "com.typesafe.play" %% "play-slick" % "5.0.2",
       "com.typesafe.slick" %% "slick" % "3.3.3",
-      "joda-time" % "joda-time" % "2.11.1",
+      "joda-time" % "joda-time" % "2.11.2",
       "org.joda" % "joda-convert" % "2.2.2",
       "com.github.tototoshi" %% "slick-joda-mapper" % "2.6.0",
       "com.h2database" % "h2" % "2.1.214",
