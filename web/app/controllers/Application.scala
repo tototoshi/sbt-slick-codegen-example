@@ -11,15 +11,14 @@ import play.api.i18n.I18nSupport
 import play.api.mvc._
 import slick.jdbc.JdbcProfile
 
-import scala.concurrent.{ ExecutionContext, Future }
+import scala.concurrent.{ExecutionContext, Future}
 
 case class UserForm(name: String)
 
-class Application @Inject() (
-    cc: ControllerComponents,
-    databaseConfigProvider: DatabaseConfigProvider)(implicit e: ExecutionContext)
-  extends AbstractController(cc)
-  with I18nSupport {
+class Application @Inject() (cc: ControllerComponents, databaseConfigProvider: DatabaseConfigProvider)(implicit
+    e: ExecutionContext
+) extends AbstractController(cc)
+    with I18nSupport {
 
   private val dbConfig = databaseConfigProvider.get[JdbcProfile]
 

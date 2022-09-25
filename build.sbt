@@ -1,6 +1,5 @@
-import scalariform.formatter.preferences._
 import slick.codegen.SourceCodeGenerator
-import slick.{ model => m }
+import slick.{model => m}
 
 lazy val databaseUrl = sys.env.getOrElse("DB_DEFAULT_URL", "DB_DEFAULT_URL is not set")
 lazy val databaseUser = sys.env.getOrElse("DB_DEFAULT_USER", "DB_DEFAULT_USER is not set")
@@ -9,12 +8,12 @@ lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT
 lazy val flyway = (project in file("flyway"))
   .enablePlugins(FlywayPlugin)
   .settings(
-  scalaVersion := "2.13.9",
-  flywayUrl := databaseUrl,
-  flywayUser := databaseUser,
-  flywayPassword := databasePassword,
-  flywayLocations := Seq("filesystem:web/conf/db/migration/default")
-)
+    scalaVersion := "2.13.9",
+    flywayUrl := databaseUrl,
+    flywayUser := databaseUser,
+    flywayPassword := databasePassword,
+    flywayLocations := Seq("filesystem:web/conf/db/migration/default")
+  )
 
 lazy val web = (project in file("web"))
   .enablePlugins(PlayScala, CodegenPlugin)
@@ -31,10 +30,6 @@ lazy val web = (project in file("web"))
       "com.h2database" % "h2" % "2.1.214",
       "org.scalatest" %% "scalatest" % "3.2.13" % Test
     ),
-    scalariformPreferences := scalariformPreferences.value
-      .setPreference(AlignSingleLineCaseStatements, true)
-      .setPreference(DoubleIndentConstructorArguments, true)
-      .setPreference(DanglingCloseParenthesis, Preserve),
     slickCodegenDatabaseUrl := databaseUrl,
     slickCodegenDatabaseUser := databaseUser,
     slickCodegenDatabasePassword := databasePassword,
@@ -42,7 +37,7 @@ lazy val web = (project in file("web"))
     slickCodegenJdbcDriver := "org.h2.Driver",
     slickCodegenOutputPackage := "models",
     slickCodegenExcludedTables := Seq("schema_version"),
-    slickCodegenCodeGenerator := { (model:  m.Model) =>
+    slickCodegenCodeGenerator := { (model: m.Model) =>
       new SourceCodeGenerator(model) {
         override def code =
           "import com.github.tototoshi.slick.H2JodaSupport.{getDatetimeResult => _, _}\n" + "import org.joda.time.DateTime\n" + super.code
@@ -59,4 +54,4 @@ lazy val web = (project in file("web"))
     },
     Compile / sourceGenerators += slickCodegen.taskValue,
     slickCodegenOutputDir := (Compile / sourceManaged).value / "a"
-)
+  )
