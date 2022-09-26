@@ -22,7 +22,7 @@ lazy val web = (project in file("web"))
     libraryDependencies ++= Seq(
       guice,
       jdbc,
-      "com.typesafe.play" %% "play-slick" % "5.0.2",
+      "com.typesafe.play" %% "play-slick" % "5.1.0",
       "com.typesafe.slick" %% "slick" % "3.3.3",
       "joda-time" % "joda-time" % "2.11.1",
       "org.joda" % "joda-convert" % "2.2.2",
