@@ -8,7 +8,7 @@ lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT
 lazy val flyway = (project in file("flyway"))
   .enablePlugins(FlywayPlugin)
   .settings(
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     flywayUrl := databaseUrl,
     flywayUser := databaseUser,
     flywayPassword := databasePassword,
@@ -18,7 +18,7 @@ lazy val flyway = (project in file("flyway"))
 lazy val web = (project in file("web"))
   .enablePlugins(PlayScala, CodegenPlugin)
   .settings(
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       guice,
       jdbc,
@@ -39,12 +39,10 @@ lazy val web = (project in file("web"))
     slickCodegenExcludedTables := Seq("schema_version"),
     slickCodegenCodeGenerator := { (model: m.Model) =>
       new SourceCodeGenerator(model) {
-        override def code =
-          "import com.github.tototoshi.slick.H2JodaSupport.{getDatetimeResult => _, _}\n" + "import org.joda.time.DateTime\n" + super.code
         override def Table = new Table(_) {
           override def Column = new Column(_) {
             override def rawType = model.tpe match {
-              case "java.sql.Timestamp" => "DateTime" // kill j.s.Timestamp
+              case "java.sql.Timestamp" => "java.time.Instant" // kill j.s.Timestamp
               case _ =>
                 super.rawType
             }
@@ -52,6 +50,13 @@ lazy val web = (project in file("web"))
         }
       }
     },
+    slickCodegenOutputToMultipleFiles := true,
     Compile / sourceGenerators += slickCodegen.taskValue,
     slickCodegenOutputDir := (Compile / sourceManaged).value / "a"
+  )
+
+lazy val root = (project in file("."))
+  .aggregate(flyway, web)
+  .settings(
+    ThisBuild / testOptions += Tests.Argument(TestFrameworks.ScalaTest, "-oF")
   )

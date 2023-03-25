@@ -3,7 +3,6 @@ package controllers
 import javax.inject.Inject
 import models.Tables
 import models.Tables.UsersRow
-import org.joda.time.DateTime
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.db.slick.DatabaseConfigProvider
@@ -12,6 +11,7 @@ import play.api.mvc._
 import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
+import java.time.Instant
 
 case class UserForm(name: String)
 
@@ -46,7 +46,7 @@ class Application @Inject() (cc: ControllerComponents, databaseConfigProvider: D
     }
 
     def handleSuccess(form: UserForm): Result = {
-      val q = Tables.Users += UsersRow(0, form.name, DateTime.now)
+      val q = Tables.Users += UsersRow(0, form.name, Instant.now)
       dbConfig.db.run(q)
       Redirect(routes.Application.index)
     }

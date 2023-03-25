@@ -4,11 +4,15 @@ addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.8.16")
 
 // settings for slick-codegen and sbt-flyway
 
-addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "1.4.0")
+addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "2.0.0-SNAPSHOT")
 
 addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "7.4.0")
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "2.1.214",
   "org.flywaydb" % "flyway-core" % "8.5.13"
+)
+
+ThisBuild / libraryDependencySchemes ++= Seq(
+  "org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always
 )
