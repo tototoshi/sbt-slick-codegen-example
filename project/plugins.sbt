@@ -9,7 +9,7 @@ addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "2.0.0")
 addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "7.4.0")
 
 libraryDependencies ++= Seq(
-  "com.h2database" % "h2" % "2.1.214",
+  "com.h2database" % "h2" % "2.2.222",
   "org.flywaydb" % "flyway-core" % "8.5.13"
 )
 
