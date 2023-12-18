@@ -23,7 +23,7 @@ lazy val web = (project in file("web"))
       guice,
       jdbc,
       "com.typesafe.play" %% "play-slick" % "5.0.2",
-      "com.typesafe.slick" %% "slick" % "3.3.3",
+      "com.typesafe.slick" %% "slick" % "3.4.1",
       "com.h2database" % "h2" % "2.2.224",
       "org.scalatest" %% "scalatest" % "3.2.13" % Test
     ),
