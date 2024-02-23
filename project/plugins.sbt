@@ -4,7 +4,7 @@ addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.8.16")
 
 // settings for slick-codegen and sbt-flyway
 
-addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "2.0.0")
+addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "2.1.0")
 
 addSbtPlugin("io.github.davidmweber" % "flyway-sbt" % "7.4.0")
 
