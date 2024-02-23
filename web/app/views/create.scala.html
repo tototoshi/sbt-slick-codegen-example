@@ -1,8 +1,9 @@
 @import views.html.helper.CSRF
+@import views.html.helper.FieldConstructor
 
 @(form: Form[UserForm])(implicit request: play.api.mvc.RequestHeader, messages: Messages)
 
-@implicitField = @{ views.html.helper.FieldConstructor(views.html.bootstrapField.f) }
+@implicitField: FieldConstructor = @{ views.html.helper.FieldConstructor(views.html.bootstrapField.f) }
 
 @main {
     @parts.container {
