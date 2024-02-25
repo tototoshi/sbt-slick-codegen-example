@@ -8,7 +8,7 @@ lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT
 lazy val flyway = (project in file("flyway"))
   .enablePlugins(FlywayPlugin)
   .settings(
-    scalaVersion := "2.13.12",
+    scalaVersion := "3.3.1",
     flywayUrl := databaseUrl,
     flywayUser := databaseUser,
     flywayPassword := databasePassword,
@@ -18,12 +18,12 @@ lazy val flyway = (project in file("flyway"))
 lazy val web = (project in file("web"))
   .enablePlugins(PlayScala, CodegenPlugin)
   .settings(
-    scalaVersion := "2.13.12",
+    scalaVersion := "3.3.1",
     libraryDependencies ++= Seq(
       guice,
       jdbc,
-      "com.typesafe.play" %% "play-slick" % "5.0.2",
-      "com.typesafe.slick" %% "slick" % "3.3.3",
+      "org.playframework" %% "play-slick" % "6.1.0-RC1",
+      "com.typesafe.slick" %% "slick" % "3.5.0-RC1",
       "com.h2database" % "h2" % "2.2.224",
       "org.scalatest" %% "scalatest" % "3.2.13" % Test
     ),
@@ -38,7 +38,7 @@ lazy val web = (project in file("web"))
       new SourceCodeGenerator(model) {
         override def Table = new Table(_) {
           override def Column = new Column(_) {
-            override def rawType = model.tpe match {
+            override def rawType = this.model.tpe match {
               case "java.sql.Timestamp" => "java.time.Instant" // kill j.s.Timestamp
               case _ =>
                 super.rawType

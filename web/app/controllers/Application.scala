@@ -33,14 +33,14 @@ class Application @Inject() (cc: ControllerComponents, databaseConfigProvider: D
   val userForm = Form(
     mapping(
       "name" -> nonEmptyText
-    )(UserForm.apply)(UserForm.unapply)
+    )(UserForm.apply)(uf => Some(uf.name))
   )
 
-  def create = Action { implicit request =>
+  def create: Action[AnyContent] = Action { implicit request =>
     Ok(views.html.create(userForm))
   }
 
-  def createPost = Action { implicit request =>
+  def createPost: Action[AnyContent] = Action { implicit request =>
     def handleError(form: Form[UserForm]): Result = {
       BadRequest(views.html.create(form))
     }
@@ -51,7 +51,7 @@ class Application @Inject() (cc: ControllerComponents, databaseConfigProvider: D
       Redirect(routes.Application.index)
     }
 
-    userForm.bindFromRequest.fold(handleError, handleSuccess)
+    userForm.bindFromRequest().fold(handleError, handleSuccess)
   }
 
 }

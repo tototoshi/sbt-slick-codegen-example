@@ -1,6 +1,6 @@
 package controllers
 
-import akka.actor.ActorSystem
+import org.apache.pekko.actor.ActorSystem
 import org.scalatest.funsuite.AnyFunSuite
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
