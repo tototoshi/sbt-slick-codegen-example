@@ -1,6 +1,6 @@
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.2")
 
-addSbtPlugin("org.playframework" % "sbt-plugin" % "3.0.1")
+addSbtPlugin("org.playframework" % "sbt-plugin" % "3.0.2")
 
 // settings for slick-codegen and sbt-flyway
 addSbtPlugin("com.github.tototoshi" % "sbt-slick-codegen" % "2.2.0")
