@@ -8,7 +8,7 @@ lazy val databasePassword = sys.env.getOrElse("DB_DEFAULT_PASSWORD", "DB_DEFAULT
 lazy val flyway = (project in file("flyway"))
   .enablePlugins(FlywayPlugin)
   .settings(
-    scalaVersion := "3.3.3",
+    scalaVersion := "3.4.1",
     flywayUrl := databaseUrl,
     flywayUser := databaseUser,
     flywayPassword := databasePassword,
@@ -18,7 +18,7 @@ lazy val flyway = (project in file("flyway"))
 lazy val web = (project in file("web"))
   .enablePlugins(PlayScala, CodegenPlugin)
   .settings(
-    scalaVersion := "3.3.3",
+    scalaVersion := "3.4.1",
     libraryDependencies ++= Seq(
       guice,
       jdbc,
