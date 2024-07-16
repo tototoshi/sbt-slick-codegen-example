@@ -24,7 +24,7 @@ lazy val web = (project in file("web"))
       jdbc,
       "org.playframework" %% "play-slick" % "6.1.0",
       "com.typesafe.slick" %% "slick" % "3.5.0",
-      "com.h2database" % "h2" % "2.2.224",
+      "com.h2database" % "h2" % "2.3.230",
       "org.scalatest" %% "scalatest" % "3.2.18" % Test
     ),
     slickCodegenDatabaseUrl := databaseUrl,
